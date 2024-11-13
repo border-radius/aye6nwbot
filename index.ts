@@ -27,6 +27,7 @@ const EMPTY_TOKEN_ERROR = 'Bot token is empty'
 const SIGINT = 'SIGINT'
 const SIGTERM = 'SIGTERM'
 const BOT_STARTED_LOG = `${new Date().toISOString()}: Bot started`
+const UNKNOWN_CHAT_LOG = 'Unknown chat id:'
 
 const token = process.env.TOKEN
 const pb = new PocketBase(process.env.PB)
@@ -187,6 +188,8 @@ const onMessage = async (ctx) => {
       ctx.update.message.chat.id,
       ctx.update.message.message_id,
     )
+  } else {
+    console.log(UNKNOWN_CHAT_LOG, ctx.update.message.chat.id)
   }
 }
 
