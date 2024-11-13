@@ -26,6 +26,7 @@ const MESSAGE_EVENT = 'message'
 const EMPTY_TOKEN_ERROR = 'Bot token is empty'
 const SIGINT = 'SIGINT'
 const SIGTERM = 'SIGTERM'
+const BOT_STARTED_LOG = `${new Date().toISOString()}: Bot started`
 
 const token = process.env.TOKEN
 const pb = new PocketBase(process.env.PB)
@@ -205,6 +206,8 @@ const main = async () => {
 
   process.once(SIGINT, () => bot.stop(SIGINT))
   process.once(SIGTERM, () => bot.stop(SIGTERM))
+
+  console.log(BOT_STARTED_LOG)
 }
 
 main()
